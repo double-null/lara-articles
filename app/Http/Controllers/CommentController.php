@@ -14,8 +14,7 @@ class CommentController extends Controller
 
     public function store(CreateRequest $request)
     {
-        echo 1;
-        die;
+        var_dump($request);
         (new Comment())->create($request->all());
         return response()->json('Ваш комментарий добавлен');
     }
