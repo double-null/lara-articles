@@ -10,6 +10,8 @@ class ArticleController extends Controller
 {
     public function index()
     {
+        $a = Article::all()->pluck('id')->toArray();
+        var_dump($a);
         if (request('tag')) {
             $tag = Tag::find(request('tag'));
             $articles = $tag->articles()->paginate(20);

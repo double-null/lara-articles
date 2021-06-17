@@ -3,7 +3,7 @@
 @section('left-column')
     <h3>Теги</h3>
     @foreach($tags as $tag)
-        <a href="/articles/?tag={{$tag->id}}">{{$tag->name}}</a>
+        <a href="/articles/?tag={{$tag->id}}">{{$tag->label}}</a>
     @endforeach
 @endsection
 

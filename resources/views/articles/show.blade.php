@@ -14,7 +14,7 @@
         </div>
         <div id="tags">
             @foreach($article->tags as $tag)
-                <a href="/articles/?tag={{$tag->id}}">{{$tag->name}}</a>
+                <a href="/articles/?tag={{$tag->id}}">{{$tag->label}}</a>
             @endforeach
         </div>
         <div class="col-12">
