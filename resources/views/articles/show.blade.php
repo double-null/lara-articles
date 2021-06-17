@@ -35,6 +35,7 @@
                 </div>
                 <input type="hidden" id="comment-article" name="article_id" value="{{$article->id}}">
                 <button id="comment-send" class="btn btn-primary mt-2">Отправить</button>
+                @csrf
             </form>
         </div>
 

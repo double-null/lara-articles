@@ -1859,8 +1859,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 __webpack_require__(/*! ./custom.js */ "./resources/js/custom.js");
 /**
@@ -1894,17 +1893,39 @@ for (var i = 0; i < like.length; i++) {
     axios.get(url).then();
   };
 }
-
-var comment = document.getElementById('comment-send');
+/*
+let comment = document.getElementById('comment-send');
 
 comment.onclick = function (event) {
+    event.preventDefault();
+    axios.post('/comments/store/', {
+        'article_id': document.getElementById('comment-article').value,
+        'title': document.getElementById('comment-title').value,
+        'content': document.getElementById('comment-content').value,
+        '_token': document.getElementsByName('_token')[0].value()
+    }).then();
+}
+
+ */
+
+
+$('#comment-send').click(function (event) {
   event.preventDefault();
-  axios.post('/comments/store/', {
-    'article_id': document.getElementById('comment-article').value,
-    'title': document.getElementById('comment-title').value,
-    'content': document.getElementById('comment-content').value
-  }).then();
-};
+  $.ajax({
+    url: '/comments/store/',
+    type: 'POST',
+    dataType: "json",
+    headers: {
+      "X-CSRF-TOKEN": $('input[name=_token]').val()
+    },
+    data: {
+      'article_id': $('#comment-article').val(),
+      'title': $('#comment-title').val(),
+      'content': $('#comment-content').val(),
+      '_token': $('input[name=_token]').val()
+    }
+  });
+});
 
 /***/ }),
 
