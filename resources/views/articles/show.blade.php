@@ -4,10 +4,9 @@
 
     <h3>{{$article->title}}</h3>
     <div class="row">
-
-        <div id="article-info" class="col-8">
-            {{$article->views}} просмотров
-            {{$article->likes}} лайков
+        <div id="article-{{$article->id}}-info" class="col-8">
+            <span class="views-counter">{{$article->views}}</span> просмотров
+            <span class="likes-counter">{{$article->likes}}</span> лайков
             Создано: {{$article->created_at}}
         </div>
         <div id="article-like" class="col-md-4">
@@ -46,7 +45,6 @@
                 <div>Опубликовано: {{$comment->created_at}}</div>
             @endforeach
         </div>
-
     </div>
 
 @endsection

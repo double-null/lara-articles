@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Redis;
 
 class ArticleController extends Controller
 {
@@ -15,6 +16,16 @@ class ArticleController extends Controller
         } else {
             $articles = Article::orderBy('id', 'desc')->paginate(20);
         }
+
+        foreach ($articles as $article) {
+            $views = Redis::get('article:views:'.$article->id);
+            if (empty($views)) {
+                $views = $article->views;
+            }
+            Redis::set('article:views:'.$article->id, ++$views);
+            $article->views = $views;
+            $article->likes = Redis::get('article:like:'.$article->id) ?? $article->likes;
+        }
         $tags = Tag::all();
         return view('articles.list', compact('articles', 'tags'));
     }
@@ -22,6 +33,15 @@ class ArticleController extends Controller
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->first();
+        if (!empty($article)) {
+            $views = Redis::get('article:views:'.$article->id);
+            if (empty($views)) {
+                $views = $article->views;
+            }
+            Redis::set('article:views:'.$article->id, ++$views);
+            $article->views = $views;
+            $article->likes = Redis::get('article:like:'.$article->id) ?? $article->likes;
+        }
         return view('articles.show', compact('article'));
     }
 

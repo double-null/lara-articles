@@ -15,9 +15,9 @@
             <div class="col-12">
                 {{$article->content}}
             </div>
-            <div class="col-8">
-                {{$article->views}} просмотров
-                {{$article->likes}} лайков
+            <div id="article-{{$article->id}}-info" class="col-8">
+                <span class="views-counter">{{$article->views}}</span> просмотров
+                <span class="likes-counter">{{$article->likes}}</span> лайков
                 Создано: {{$article->created_at}}
             </div>
             <div class="col-md-4">
@@ -28,6 +28,7 @@
 
     <div class="row">
         <div class="col-12">{{$articles->links()}}</div>
+        @csrf
     </div>
 
 @endsection
