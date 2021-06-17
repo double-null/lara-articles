@@ -25,6 +25,7 @@
         <div class="col-12 my-2">
             <h4>Оставить комментарий</h4>
             <form id="comment-form" name="comment-form" method="POST">
+                @csrf
                 <div class="form-group">
                     <label for="comment-title">Тема комментария</label>
                     <input type="text" class="form-control" id="comment-title">
@@ -35,7 +36,6 @@
                 </div>
                 <input type="hidden" id="comment-article" name="article_id" value="{{$article->id}}">
                 <button id="comment-send" class="btn btn-primary mt-2">Отправить</button>
-                @csrf
             </form>
         </div>
 

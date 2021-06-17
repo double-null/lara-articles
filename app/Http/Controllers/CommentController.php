@@ -7,11 +7,6 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
-    public function index()
-    {
-
-    }
-
     public function store(CreateRequest $request)
     {
         (new Comment())->create($request->all());

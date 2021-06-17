@@ -1884,35 +1884,27 @@ __webpack_require__(/*! ./custom.js */ "./resources/js/custom.js");
   \********************************/
 /***/ (() => {
 
-var like = document.getElementsByClassName('like');
-
-for (var i = 0; i < like.length; i++) {
-  like[i].onclick = function () {
-    var article = this.dataset.article;
-    var url = '/articles/like/' + article;
-    axios.get(url).then();
-  };
-}
-/*
-let comment = document.getElementById('comment-send');
-
-comment.onclick = function (event) {
-    event.preventDefault();
-    axios.post('/comments/store/', {
-        'article_id': document.getElementById('comment-article').value,
-        'title': document.getElementById('comment-title').value,
-        'content': document.getElementById('comment-content').value,
-        '_token': document.getElementsByName('_token')[0].value()
-    }).then();
-}
-
- */
-
-
+$('.like').click(function (event) {
+  event.preventDefault();
+  $.ajax({
+    url: '/like/',
+    type: 'POST',
+    dataType: "json",
+    headers: {
+      "X-CSRF-TOKEN": $('input[name=_token]').val()
+    },
+    data: {
+      'article_id': $('#comment-article').val(),
+      'title': $('#comment-title').val(),
+      'content': $('#comment-content').val(),
+      '_token': $('input[name=_token]').val()
+    }
+  });
+});
 $('#comment-send').click(function (event) {
   event.preventDefault();
   $.ajax({
-    url: '/comments/store/',
+    url: '/comments/store',
     type: 'POST',
     dataType: "json",
     headers: {
