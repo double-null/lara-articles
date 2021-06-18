@@ -43,11 +43,4 @@ class ArticleController extends Controller
         }
         return view('articles.show', compact('article'));
     }
-
-    public function like()
-    {
-        $id = request('id');
-        $article = Article::find($id);
-        $article->increment('likes');
-    }
 }
