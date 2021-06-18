@@ -10,13 +10,11 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $a = Article::all()->pluck('id')->toArray();
-        var_dump($a);
         if (request('tag')) {
             $tag = Tag::find(request('tag'));
-            $articles = $tag->articles()->paginate(20);
+            $articles = $tag->articles()->paginate(10);
         } else {
-            $articles = Article::orderBy('id', 'desc')->paginate(20);
+            $articles = Article::orderBy('id', 'desc')->paginate(10);
         }
 
         foreach ($articles as $article) {
