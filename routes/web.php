@@ -22,3 +22,5 @@ Route::get('/articles/{slug}/', [App\Http\Controllers\ArticleController::class, 
 Route::post('/comments/store/', [App\Http\Controllers\CommentController::class, 'store']);
 
 Route::post('/like/', [App\Http\Controllers\LikeController::class, 'update']);
+
+Route::post('/view/', [App\Http\Controllers\ViewController::class, 'update']);

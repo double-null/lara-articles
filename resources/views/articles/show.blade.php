@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="card my-2">
+    <div id="article" data-view="1" class="card my-2">
         <div class="card-body">
             <h3>{{$article->title}}</h3>
             <div class="row">

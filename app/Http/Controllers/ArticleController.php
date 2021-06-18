@@ -38,7 +38,6 @@ class ArticleController extends Controller
             if (empty($views)) {
                 $views = $article->views;
             }
-            Redis::set('article:views:'.$article->id, ++$views);
             $article->views = $views;
             $article->likes = Redis::get('article:like:'.$article->id) ?? $article->likes;
         }

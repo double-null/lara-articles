@@ -10,11 +10,11 @@ class ViewController
     public function update()
     {
         $article = request('article');
-        $view = Redis::get('article:view:'.$article);
-        if (empty($view)) {
-            $view = Article::find($article)->first()->views;
+        $views = Redis::get('article:views:'.$article);
+        if (empty($views)) {
+            $views = Article::find($article)->first()->views;
         }
-        Redis::set('article:view:'.$article, ++$view);
-        return response()->json(['likes' => $view, 'article' => $article]);
+        Redis::set('article:views:'.$article, ++$views);
+        return response()->json(['views' => $views, 'article' => $article]);
     }
 }

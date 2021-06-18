@@ -4,33 +4,14 @@
     <meta charset="utf-8">
     <title>Test</title>
 
-
-    <!-- start: Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- end: Mobile Specific -->
-
-    <!-- start: Facebook Open Graph -->
     <meta property="og:title" content=""/>
     <meta property="og:description" content=""/>
     <meta property="og:type" content=""/>
     <meta property="og:url" content=""/>
     <meta property="og:image" content=""/>
-    <!-- end: Facebook Open Graph -->
 
-    <!-- start: CSS -->
-    <!--
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
-    -->
     <link href="{{mix('/css/app.css')}}" rel="stylesheet">
-    <!-- end: CSS -->
-
-
 </head>
 <body>
 <div class="container">

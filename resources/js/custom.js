@@ -1,3 +1,21 @@
+setTimeout(function () {
+    let view = $('#article').data('view');
+    if (view) {
+        $.ajax({
+            url: '/view',
+            type: 'POST',
+            dataType: "json",
+            data: {
+                'article': $('.like').data('article'),
+                '_token': $('input[name=_token]').val(),
+            },
+            success: function (data) {
+                $('#article-' + data.article + '-info .views-counter').text(data.views);
+            }
+        });
+    }
+}, 5000);
+
 $('.like').click(function (event) {
     event.preventDefault();
     $.ajax({
@@ -44,4 +62,4 @@ $('#comment-send').click(function (event){
             }
         },
     });
-})
+});
