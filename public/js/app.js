@@ -1913,6 +1913,25 @@ $('#comment-send').click(function (event) {
       'title': $('#comment-title').val(),
       'content': $('#comment-content').val(),
       '_token': $('input[name=_token]').val()
+    },
+    success: function success(data) {
+      $('.errors').html('');
+      $('#comment-form-block').html('<div class="alert alert-success">Комментарий отправлен успешно</div>');
+    },
+    error: function error(data) {
+      $('.errors').html('');
+
+      if (data.status === 422) {
+        var errors = $.parseJSON(data.responseText)['errors'];
+
+        if (typeof errors.title !== "undefined") {
+          $('#comment-title-error').html(errors.title[0]);
+        }
+
+        if (typeof errors.content[0] !== "undefined") {
+          $('#comment-content-error').html(errors.content[0]);
+        }
+      }
     }
   });
 });

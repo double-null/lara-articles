@@ -30,17 +30,19 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 my-2">
+        <div id="comment-form-block" class="col-12 my-2">
             <h4>Оставить комментарий</h4>
             <form id="comment-form" name="comment-form" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="comment-title">Тема комментария</label>
                     <input type="text" class="form-control" id="comment-title">
+                    <div id="comment-title-error" class="errors"></div>
                 </div>
                 <div class="form-group">
                     <label for="comment-content">Комментарий</label>
                     <textarea class="form-control" id="comment-content" rows="3"></textarea>
+                    <div id="comment-content-error" class="errors"></div>
                 </div>
                 <input type="hidden" id="comment-article" name="article_id" value="{{$article->id}}">
                 <button id="comment-send" class="btn btn-primary mt-2">Отправить</button>

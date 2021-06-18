@@ -22,7 +22,7 @@ class CreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Тема комментария',
+            'title.required' => 'Тема комментария не заполнена',
             'content.required' => 'Комментарий не заполнен',
         ];
     }
