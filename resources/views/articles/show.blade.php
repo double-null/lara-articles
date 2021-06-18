@@ -1,26 +1,35 @@
 @extends('layout')
 
 @section('content')
-
-    <h3>{{$article->title}}</h3>
+    <div class="card my-2">
+        <div class="card-body">
+            <h3>{{$article->title}}</h3>
+            <div class="row">
+                <div class="col-12">
+                    <img class="w-100" style="height: 480px;" src="{{$article->preview}}" alt="{{$article->title}}">
+                </div>
+                <div id="article-{{$article->id}}-info" class="col-8">
+                    <span class="views-counter">{{$article->views}}</span> просмотров
+                    <span class="likes-counter">{{$article->likes}}</span> лайков
+                    Создано: {{$article->created_at}}
+                </div>
+                <div id="article-like" class="col-md-4">
+                    <a class="like" href="#" data-article="{{$article->id}}">Лайк!</a>
+                </div>
+                <div id="tags">
+                    @foreach($article->tags as $tag)
+                        <span class="badge bg-success">
+                            <a class="text-white" href="/articles/?tag={{$tag->id}}">{{$tag->label}}</a>
+                        </span>
+                    @endforeach
+                </div>
+                <div class="col-12">
+                    {{$article->content}}
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
-        <div id="article-{{$article->id}}-info" class="col-8">
-            <span class="views-counter">{{$article->views}}</span> просмотров
-            <span class="likes-counter">{{$article->likes}}</span> лайков
-            Создано: {{$article->created_at}}
-        </div>
-        <div id="article-like" class="col-md-4">
-            <a class="like" href="#" data-article="{{$article->id}}">Лайк!</a>
-        </div>
-        <div id="tags">
-            @foreach($article->tags as $tag)
-                <a href="/articles/?tag={{$tag->id}}">{{$tag->label}}</a>
-            @endforeach
-        </div>
-        <div class="col-12">
-            {{$article->content}}
-        </div>
-
         <div class="col-12 my-2">
             <h4>Оставить комментарий</h4>
             <form id="comment-form" name="comment-form" method="POST">

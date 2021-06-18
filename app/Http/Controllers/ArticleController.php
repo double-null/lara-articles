@@ -10,9 +10,10 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        if (request('tag')) {
-            $tag = Tag::find(request('tag'));
-            $articles = $tag->articles()->paginate(10);
+        $tagId = request('tag');
+        if ($tagId) {
+            $tag = Tag::find($tagId);
+            $articles = $tag->articles()->orderBy('id', 'desc')->paginate(10);
         } else {
             $articles = Article::orderBy('id', 'desc')->paginate(10);
         }
@@ -22,12 +23,11 @@ class ArticleController extends Controller
             if (empty($views)) {
                 $views = $article->views;
             }
-            Redis::set('article:views:'.$article->id, ++$views);
             $article->views = $views;
             $article->likes = Redis::get('article:like:'.$article->id) ?? $article->likes;
         }
         $tags = Tag::all();
-        return view('articles.list', compact('articles', 'tags'));
+        return view('articles.list', compact('articles', 'tags', 'tagId'));
     }
 
     public function show($slug)

@@ -10,6 +10,6 @@ class CommentController extends Controller
     public function store(CreateRequest $request)
     {
         (new Comment())->create($request->all());
-        return response()->json('Ваш комментарий добавлен');
+        return response()->json(['success' => 1]);
     }
 }

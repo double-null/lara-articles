@@ -55,12 +55,7 @@
 
     </div>
     <div class="row">
-        <div class="col-md-3">
-            @yield('left-column')
-        </div>
-        <div class="col-md-9">
-            @yield('content')
-        </div>
+        @yield('content')
     </div>
     <div class="row bg-dark text-light">
         <div class="col-12" style="height: 80px;">Footer</div>
