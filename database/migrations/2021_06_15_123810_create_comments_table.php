@@ -10,10 +10,11 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('article_id')->comment('ID публикации');
+            $table->unsignedBigInteger('article_id')->comment('ID статьи');
             $table->string('title')->comment('Тема сообщения');
             $table->text('content')->comment('Содержание');
             $table->timestamps();
+            $table->foreign('article_id')->references('id')->on('articles');
         });
     }
 
