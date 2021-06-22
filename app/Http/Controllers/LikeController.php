@@ -14,7 +14,7 @@ class LikeController extends Controller
 {
     /**
      * @param UpdateRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return ArticleResource
      */
     public function update(UpdateRequest $request)
     {
