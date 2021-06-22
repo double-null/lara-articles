@@ -22,8 +22,8 @@
                             {{$article->content}}
                         </div>
                         <div id="article-{{$article->id}}-info" class="col-8">
-                            <span class="views-counter">{{$article->views}}</span> просмотров
-                            <span class="likes-counter">{{$article->likes}}</span> лайков
+                            <span class="views-counter">{{$article->realtime_views}}</span> просмотров
+                            <span class="likes-counter">{{$article->realtime_likes}}</span> лайков
                             Создано: {{$article->created_at}}
                         </div>
                         <div class="col-md-4">
