@@ -2,19 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Like\UpdateRequest;
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
-use Illuminate\Support\Facades\Redis;
 
+/**
+ * Class ViewController
+ * @package App\Http\Controllers
+ */
 class ViewController
 {
-    public function update()
+    public function update(UpdateRequest $request)
     {
-        $article = request('article');
-        $views = Redis::get('article:views:'.$article);
-        if (empty($views)) {
-            $views = Article::find($article)->first()->views;
+        $article = new Article();
+        $article->id = $request->input('article');
+        $realtime_views = $article->getRealtimeViews();
+        if (!$realtime_views) {
+            $articleStatic = Article::find($article->id);
+            if ($articleStatic) {
+                $article->realtime_views = $articleStatic->first()->likes;
+            } else {
+                abort(404);
+            }
         }
-        Redis::set('article:views:'.$article, ++$views);
-        return response()->json(['views' => $views, 'article' => $article]);
+        $article->realtime_views = ++$realtime_views;
+        return new ArticleResource($article);
     }
 }

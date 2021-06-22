@@ -9,8 +9,9 @@ setTimeout(function () {
                 'article': $('.like').data('article'),
                 '_token': $('input[name=_token]').val(),
             },
-            success: function (data) {
-                $('#article-' + data.article + '-info .views-counter').text(data.views);
+            success: function (articleObject) {
+                $('#article-' + articleObject.data.id + '-info .views-counter')
+                    .text(articleObject.data.realtime_views);
             }
         });
     }
@@ -26,8 +27,9 @@ $('.like').click(function (event) {
             'article': $(this).data('article'),
             '_token': $('input[name=_token]').val(),
         },
-        success: function (data) {
-            $('#article-'+data.article+'-info .likes-counter').text(data.likes);
+        success: function (articleObject) {
+            $('#article-'+articleObject.data.id+'-info .likes-counter')
+                .text(articleObject.data.realtime_likes);
         }
     });
 });
