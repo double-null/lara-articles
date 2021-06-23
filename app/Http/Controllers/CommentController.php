@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Comment\CreateRequest;
-use App\Models\Comment;
+use App\Jobs\SendComment;
 
 class CommentController extends Controller
 {
     public function store(CreateRequest $request)
     {
-        (new Comment())->create($request->all());
-        return response()->json(['success' => 1]);
+        SendComment::dispatch($request->validated());
+        return response()->noContent();
     }
 }
